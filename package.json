@@ -1,0 +1,12 @@
+{
+  "name": "ejemplo-salva-ts",
+  "version": "1.0.0",
+  "scripts": {
+  "build":"tsc",
+  "start":"node dist/ejemplo.js",
+  "dev":"tsc && node dist/ejemplo.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
