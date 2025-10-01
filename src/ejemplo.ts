@@ -1,43 +1,49 @@
-interface DatosUsuario { 
-    nombre:string;
-    email:string;
-    edad:number;
-    activo:boolean;
-}
-interface Usuario{
-    id:number;
-    nombre:string;
-    email:string;
-    edad:number;
-    activo:boolean;
-    fechaCreacion:Date;
+type RolUsuario = "ADMINISTRADOR" | "EDITOR" | "VISUALIZADOR";
 
+interface DatosUsuario {
+  nombre: string;
+  email: string;
+  edad: number;
+  activo: boolean;
+  rol: RolUsuario;
 }
 
-function CrearUsuario(datos:DatosUsuario):Usuario{
-    return{
-    id:Date.now(),
+interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+  edad: number;
+  activo: boolean;
+  fechaCreacion: Date;
+  rol: RolUsuario
+}
+
+function crearUsuario(datos: DatosUsuario): Usuario {
+  return {
+    id: Date.now(),
     nombre: datos.nombre,
     email: datos.email,
     edad: datos.edad,
     activo: datos.activo,
-    fechaCreacion: new Date()
-    };
-    }
+    rol: datos.rol, 
+    fechaCreacion: new Date(),
+  };
+}
 
-    //ejemplo
-    const DatosEntrada = { 
-        nombre: "Salva Garcia",
-        email: "Salva@gmail.com",
-        edad: 70,
-        activo:true,
-    };
+const datosEntrada = {
+  nombre: "Salva Garcia",
+  email: "salva@email.com",
+  edad: 70,
+  activo: true,
+  rol: "ADMINISTRADOR" as RolUsuario, 
+};
 
-    const nuevoUsuario = CrearUsuario(DatosEntrada);
 
-    console.log("Usuario Creado:");
-    console.log(nuevoUsuario);
-    console.log(`ID: ${nuevoUsuario.id}`);
-    console.log(`nombre: ${nuevoUsuario.nombre}`); 
-    console.log(`email: ${nuevoUsuario.email}`);
-    console.log(`Fecha De Creacion: ${nuevoUsuario.fechaCreacion}`); 
+const nuevoUsuario = crearUsuario(datosEntrada);
+console.log("Usuario creado: ");
+console.log(nuevoUsuario);
+console.log(`ID: ${nuevoUsuario.id}`);
+console.log(`Nombre: ${nuevoUsuario.nombre}`);
+console.log(`Email: ${nuevoUsuario.email}`);
+console.log(`Fecha de creación: ${nuevoUsuario.fechaCreacion}`)
+console.log(nuevoUsuario.rol); 
